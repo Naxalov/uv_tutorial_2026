@@ -1,5 +1,6 @@
 # Virtual environment (uv recreates it from uv.lock)
 .venv/
+venv/
 
 # Python bytecode
 __pycache__/

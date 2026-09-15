@@ -60,6 +60,11 @@ class Ledger:
         Income is ignored. The result is zero or negative. Takes the year and
         month explicitly, so it can be tested without touching the clock.
         """
+        total = 0.0
+        for transaction in self.transactions:
+            if transaction["date"].year == year and transaction["date"].month == month and transaction["amount"] < 0:
+                total += transaction["amount"]
+        return total
 
     def spending_this_month(self) -> float:
         """Return the total spending in the current month.
