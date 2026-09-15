@@ -6,7 +6,6 @@ empty. Write a failing test first, then fill the body in until it passes.
 
 from datetime import date
 
-
 def today() -> date:
     """Return the current date.
 
@@ -14,7 +13,7 @@ def today() -> date:
     needs "now" must call this instead of ``date.today()`` directly, otherwise the
     behaviour cannot be tested.
     """
-
+    return date.today()
 
 class Ledger:
     """A list of transactions, each with an amount, a category and a date."""
@@ -22,7 +21,7 @@ class Ledger:
     def __init__(self) -> None:
         """Create an empty ledger."""
 
-    def add(self, amount: float, category: str, on: date | None = None) -> None:
+    def add(self, amount: float, category: str, on) -> None:
         """Record one transaction.
 
         A positive ``amount`` is income, a negative one is spending. ``on``
