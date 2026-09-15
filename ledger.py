@@ -14,6 +14,7 @@ def today() -> date:
     needs "now" must call this instead of ``date.today()`` directly, otherwise the
     behaviour cannot be tested.
     """
+    return date.today()
 
 
 class Ledger:
@@ -21,6 +22,7 @@ class Ledger:
 
     def __init__(self) -> None:
         """Create an empty ledger."""
+        self.transactions = []
 
     def add(self, amount: float, category: str, on: date | None = None) -> None:
         """Record one transaction.
@@ -57,3 +59,15 @@ class Ledger:
         Reads the current month from ``today()``, so tests must monkeypatch that
         function to get a predictable result.
         """
+        current_date=today()
+        total_spending=0.0
+        for transaction in self.transactions:
+            amount = transaction["amount"]
+            txn_date = transaction["date"]
+            if amount < 0 and txn_date.year == current_date.year and txn_date.month == current_date.month:
+                total_spending += amount
+                
+        return total_spending
+
+
+
