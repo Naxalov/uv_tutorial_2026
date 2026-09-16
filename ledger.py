@@ -19,8 +19,9 @@ def today() -> date:
 class Ledger:
     """A list of transactions, each with an amount, a category and a date."""
 
-    def __init__(self) -> None:
+    def __init__(self,ledger) -> None:
         """Create an empty ledger."""
+        self.ledger=ledger
         self.transactions: list[dict[str, object]] = []
 
     def add(self, amount: float, category: str, on: date | None = None) -> None:
@@ -46,6 +47,12 @@ class Ledger:
 
         An empty ledger has a balance of zero.
         """
+        if not self.ledger:
+            return 0
+        count=0
+        for i in self.ledger:
+                count+=i["amount"]
+        return count
 
     def total_by_category(self) -> dict[str, float]:
         """Return the net total per category.
