@@ -53,6 +53,12 @@ class Ledger:
         For example ``{"food": -120.0, "salary": 3000.0}``. Categories with no
         transactions do not appear.
         """
+        result = {}
+
+        for amount, category, on in self.transactions:
+            result[category] = result.get(category, 0.0) + amount
+
+        return result
 
     def spending_in_month(self, year: int, month: int) -> float:
         """Return the total spending in the given month.
