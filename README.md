@@ -44,8 +44,28 @@ the `tmp_path` fixture.
 pyproject.toml
 ledger.py
 tests/
-    test_ledger.py
+    conftest.py        # shared fixtures
+    test_add.py        # one file per method
 ```
+
+## How to contribute
+
+Each unimplemented method has its own branch with the tests already written:
+
+| Branch | Implement | Tests |
+| --- | --- | --- |
+| `task/today` | `today()` | `tests/test_today.py` |
+| `task/balance` | `Ledger.balance()` | `tests/test_balance.py` |
+| `task/total-by-category` | `Ledger.total_by_category()` | `tests/test_total_by_category.py` |
+| `task/spending-in-month` | `Ledger.spending_in_month()` | `tests/test_spending_in_month.py` |
+| `task/spending-this-month` | `Ledger.spending_this_month()` | `tests/test_spending_this_month.py` |
+
+1. Fork this repo and clone your fork.
+2. `git checkout task/<name>` and run `uv run pytest` — the new file is red.
+3. Fill in the method in `ledger.py` until it is green. Do not edit the tests.
+4. Push the branch to your fork and open a pull request against `main`.
+
+CI runs the tests and shows a per-test table in the workflow Summary.
 
 ## Running the tests
 
